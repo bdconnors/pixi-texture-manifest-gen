@@ -1,0 +1,22 @@
+{
+  "name": "2d-sprite-manifest-gen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bdconnors/2d-sprite-manifest-gen.git"
+  },
+  "author": "Brandon Connors <bdc5435@rit.edu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bdconnors/2d-sprite-manifest-gen/issues"
+  },
+  "homepage": "https://github.com/bdconnors/2d-sprite-manifest-gen#readme",
+  "dependencies": {
+    "image-size": "^0.8.3"
+  }
+}
