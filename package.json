@@ -1,5 +1,5 @@
 {
-  "name": "2d-sprite-manifest-gen",
+  "name": "pixi-texture-manifest-gen",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
