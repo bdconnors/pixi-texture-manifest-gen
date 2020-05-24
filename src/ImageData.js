@@ -79,7 +79,7 @@ class ImageData{
                 col = i;
                 name = `${this.getBase()}-${frameCount}`;
                 x = ((frameW * col) - frameW);
-                y = (row * frameH);
+                y = ((frameH * row) - frameH);
                 frames[name] = new Frame(x,y,frameW,frameH);
                 frameCount++;
             }
