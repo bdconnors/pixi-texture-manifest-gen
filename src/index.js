@@ -5,17 +5,12 @@ const Manifest = require('./model').Manifest;
 
 
 function makeImageData(asset){
-    let animations = [];
-    let scale = 1;
-    const dimensions = imageSize(asset.path);
-    const path = asset.path;
-    const width = dimensions.width;
-    const height = dimensions.height;
-    const frames = asset.frames;
-    if(asset.animations){animations = asset.animations;}
-    if(asset.scale){scale = asset.scale;}
+    asset.img = imageSize(asset.path);
+    console.log(asset.img);
+    if(!(asset.animations)){asset.animations = []}
+    if(!(asset.scale)){asset.scale = 1;}
 
-    return new ImageData(path,width,height,frames,animations,scale);
+    return new ImageData(asset);
 }
 function makeManifest(imageData){
     const frames = imageData.getFrames();
@@ -25,7 +20,6 @@ function makeManifest(imageData){
     return new Manifest(frames,animations,meta);
 }
 function write(asset,cb){
-
     const imageData = makeImageData(asset);
     const manifest = makeManifest(imageData);
     const data = JSON.stringify(manifest, null,'\t');

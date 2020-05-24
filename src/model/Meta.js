@@ -1,6 +1,6 @@
 class Meta{
-    constructor(image,w,h,scale = 1){
-        this.image = image;
+    constructor(file,w,h,scale){
+        this.image = file;
         this.size = {w:w,h:h};
         this.scale = scale;
     }

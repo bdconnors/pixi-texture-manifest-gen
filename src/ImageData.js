@@ -4,13 +4,14 @@ const Animations = require('./model/Animations');
 const path = require('path');
 
 class ImageData{
-    constructor(src,w,h,count,animations,scale){
-        this.path = src;
-        this.w = w;
-        this.h = h;
-        this.count = count;
-        this.animations = animations;
-        this.scale = scale;
+    constructor(asset){
+        this.path = asset.path;
+        this.w = asset.img.width;
+        this.h = asset.img.height;
+        this.col = asset.col;
+        this.row = asset.row;
+        this.animations = asset.animations;
+        this.scale = asset.scale;
     }
     getName(){
         return this.path.split('\\').pop().split('/').pop();
@@ -51,23 +52,39 @@ class ImageData{
 
         return animation;
     }
+    getFrameCount(){
+        return this.col * this.row;
+    }
+    getFrameWidth(){
+        return this.w / this.col;
+    }
+    getFrameHeight(){
+        return this.h / this.row;
+    }
     getFrames(){
-        const frames = [];
-        const baseName = this.getBase();
-        const width = this.w / this.count;
-        const height = this.h;
-        const y = 0;
+        let frames = {};
+        const frameW = this.getFrameWidth();
+        const frameH = this.getFrameHeight();
 
+        let y;
         let x;
         let name;
-        let frame;
+        let col;
+        let row;
+        let frameCount = 1;
 
-        for(let i = 0; i < this.count; i++){
-            x = width * i;
-            name = baseName +"-"+(i+1);
-            frame = new Frame(x,y,width,height);
-            frames.push(frame);
+        for(let j = 1; j <= this.row; j++){
+            for(let i = 1; i <= this.col; i++) {
+                row = j;
+                col = i;
+                name = `${this.getBase()}-${frameCount}`;
+                x = ((frameW * col) - frameW);
+                y = (row * frameH);
+                frames[name] = new Frame(x,y,frameW,frameH);
+                frameCount++;
+            }
         }
+
         return frames;
     }
 
